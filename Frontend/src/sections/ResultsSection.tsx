@@ -1,7 +1,7 @@
 import React from 'react';
 import SectionTitle from '../components/ui/SectionTitle';
 import Button from '../components/ui/Button';
-
+import useIntersection from '../hooks/useIntersection';
 
 const BIG_STATS = [
   { value: '8.6%',  label: 'Average body fat lost',      sub: 'across 18 classes in 8 weeks' },
@@ -24,7 +24,7 @@ const ResultsSection: React.FC = () => {
     <section id="results">
       {/* Stats — dark */}
       <div className="relative bg-gym-black py-24 md:py-32 before:absolute before:top-0 before:left-0 before:right-0 before:h-px before:bg-gradient-to-r before:from-transparent before:via-gold/30 before:to-transparent"
-        ref={statsRef}>
+        ref={statsRef as React.RefObject<HTMLDivElement>}>
         <div className="max-w-[1200px] mx-auto px-6">
           <SectionTitle eyebrow="Real Results" title="The Numbers Don't Lie."
             subtitle="Our training methodology is backed by exercise science. These are real average outcomes from members who completed our 8-week program."
@@ -48,7 +48,7 @@ const ResultsSection: React.FC = () => {
       </div>
 
       {/* Testimonials — light */}
-      <div className="bg-off-white py-24 md:py-32" ref={testiRef}>
+      <div className="bg-off-white py-24 md:py-32" ref={testiRef as React.RefObject<HTMLDivElement>}>
         <div className="max-w-[1200px] mx-auto px-6">
           <SectionTitle eyebrow="Member Stories" title="Hear It From Them." align="center" light />
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">

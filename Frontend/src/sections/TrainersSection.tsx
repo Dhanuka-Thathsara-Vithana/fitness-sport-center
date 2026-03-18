@@ -1,6 +1,6 @@
 import React from 'react';
 import SectionTitle from '../components/ui/SectionTitle';
-
+import useIntersection from '../hooks/useIntersection';
 
 const TRAINERS = [
   { emoji: '💪', name: 'Marcus Reid',   specialty: 'Strength & Powerlifting', cert: 'NASM-CPT | CSCS | USA Powerlifting Coach', exp: '10 Yrs', badges: ['Powerlifting', 'Olympic', 'Recomp'] },

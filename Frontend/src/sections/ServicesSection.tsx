@@ -1,7 +1,7 @@
 import type { ServiceItem } from '../types'
 import React, { useState } from 'react';
 import SectionTitle from '../components/ui/SectionTitle';
-
+import useIntersection from '../hooks/useIntersection';
 import { Dumbbell, Flame, Brain, Apple, Waves, Bike } from 'lucide-react';
 
 const SERVICES = [

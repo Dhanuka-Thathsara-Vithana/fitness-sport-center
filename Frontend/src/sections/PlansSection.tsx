@@ -2,7 +2,7 @@ import type { PlanCardProps } from '../types'
 import React from 'react';
 import SectionTitle from '../components/ui/SectionTitle';
 import Button from '../components/ui/Button';
-
+import useIntersection from '../hooks/useIntersection';
 import { Zap } from 'lucide-react';
 
 const PLANS = [

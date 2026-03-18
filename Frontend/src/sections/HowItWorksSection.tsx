@@ -1,7 +1,7 @@
 import React from 'react';
 import SectionTitle from '../components/ui/SectionTitle';
 import Button from '../components/ui/Button';
-
+import useIntersection from '../hooks/useIntersection';
 
 const STEPS = [
   { num: '01', title: 'Book Your Session',       desc: "Choose from 30+ weekly classes on our app or website. First-timers get a free orientation — show up 15 minutes early and we'll get you set up.", icon: '📅' },
