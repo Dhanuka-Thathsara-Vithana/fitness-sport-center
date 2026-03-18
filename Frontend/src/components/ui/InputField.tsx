@@ -1,8 +1,8 @@
-import React, { ChangeEvent, FocusEvent } from 'react'
+import React from 'react'
 import type { InputFieldProps } from '../../types'
 
 const baseInput =
-  'w-full bg-gym-black/60 border text-off-white font-body text-[0.95rem] font-normal px-4 py-3.5 outline-none transition-colors duration-200 placeholder-off-white/30 rounded-none appearance-none'
+  'w-full bg-gym-black/60 border text-off-white font-body text-base sm:text-[0.95rem] font-normal px-4 py-3.5 outline-none transition-colors duration-200 placeholder-off-white/30 rounded-none appearance-none'
 
 const errorBorder = 'border-red-500'
 const normalBorder =
@@ -23,11 +23,11 @@ const InputField: React.FC<InputFieldProps> = ({
   const borderClass = error ? errorBorder : normalBorder
 
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-1.5 sm:gap-2">
       {label && (
         <label
           htmlFor={fieldId}
-          className="font-condensed text-[0.82rem] font-bold tracking-[0.12em] uppercase text-off-white/80"
+          className="font-condensed text-[0.78rem] sm:text-[0.82rem] font-bold tracking-[0.1em] sm:tracking-[0.12em] uppercase text-off-white/80"
         >
           {label}
           {required && <span className="text-gold ml-0.5">*</span>}
@@ -63,7 +63,7 @@ const InputField: React.FC<InputFieldProps> = ({
         <textarea
           id={fieldId}
           rows={rows}
-          className={`${baseInput} ${borderClass} resize-y min-h-[130px]`}
+          className={`${baseInput} ${borderClass} resize-y min-h-[110px] sm:min-h-[130px]`}
           {...(rest as React.TextareaHTMLAttributes<HTMLTextAreaElement>)}
         />
       ) : (
@@ -76,7 +76,7 @@ const InputField: React.FC<InputFieldProps> = ({
       )}
 
       {error && (
-        <span className="flex items-center gap-1.5 text-[0.82rem] font-medium text-red-400">
+        <span className="flex items-center gap-1.5 text-[0.8rem] sm:text-[0.82rem] font-medium text-red-400">
           <span>⚠</span> {error}
         </span>
       )}

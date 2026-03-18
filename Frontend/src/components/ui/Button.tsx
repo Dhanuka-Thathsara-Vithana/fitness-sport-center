@@ -3,7 +3,9 @@ import type { ButtonProps } from '../../types'
 
 const VARIANTS: Record<string, string> = {
   primary:
-    'bg-gold text-gym-black hover:bg-gold-light clip-btn font-condensed font-extrabold tracking-[0.12em] uppercase transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(201,148,10,0.4)] relative overflow-hidden group',
+    // clip-btn only kicks in at sm+ — on mobile full-width buttons it scales
+    // badly, so we fall back to rounded-sm instead.
+    'bg-gold text-gym-black rounded-sm sm:rounded-none sm:clip-btn font-condensed font-extrabold tracking-[0.12em] uppercase transition-all duration-200 hover:bg-gold-light hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(201,148,10,0.4)] relative overflow-hidden group',
   outline:
     'bg-transparent text-gold border-2 border-gold hover:bg-gold hover:text-gym-black font-condensed font-extrabold tracking-[0.12em] uppercase transition-all duration-200 hover:-translate-y-0.5',
   ghost:
@@ -13,7 +15,8 @@ const VARIANTS: Record<string, string> = {
 const SIZES: Record<string, string> = {
   sm: 'py-2.5 px-6 text-[0.85rem]',
   md: 'py-3.5 px-9 text-[0.95rem]',
-  lg: 'py-4 px-11 text-[1.05rem]',
+  // lg: tighten horizontal padding on mobile so text breathes inside w-full buttons
+  lg: 'py-4 px-6 sm:px-11 text-[0.98rem] sm:text-[1.05rem]',
 }
 
 const Button: React.FC<ButtonProps> = ({
