@@ -3,8 +3,8 @@ import SectionTitle from '../components/ui/SectionTitle';
 import Button from '../components/ui/Button';
 import InputField from '../components/ui/InputField';
 import FormFeedback from '../components/FormFeedback';
-import { validateForm, INITIAL_FORM, INQUIRY_OPTIONS } from '../utils/validation';
-import useIntersection from '../hooks/useIntersection';
+
+
 
 const INFO = [
   { icon: '📍', label: 'Location', value: '88 Iron Ave, Fitness District\nColombo 03, Western Province' },
