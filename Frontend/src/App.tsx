@@ -1,33 +1,43 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState } from 'react'
 
-function App() {
-  const [count, setCount] = useState(0)
+import AnnouncementBar        from './components/layout/AnnouncementBar'
+import Navbar                 from './components/layout/Navbar'
+import Footer                 from './components/layout/Footer'
+
+import HeroSection            from './sections/HeroSection'
+import AboutSection           from './sections/AboutSection'
+import ResultsSection         from './sections/ResultsSection'
+import HowItWorksSection      from './sections/HowItWorksSection'
+import ServicesSection        from './sections/ServicesSection'
+import TrainersSection        from './sections/TrainersSection'
+import PlansSection           from './sections/PlansSection'
+import GuaranteeBannerSection from './sections/GuaranteeBannerSection'
+import FAQSection             from './sections/FAQSection'
+import ContactSection         from './sections/ContactSection'
+
+const App: React.FC = () => {
+  const [announcementVisible, setAnnouncementVisible] = useState<boolean>(true)
+  const topOffset = announcementVisible ? '40px' : '0px'
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <AnnouncementBar onDismiss={() => setAnnouncementVisible(false)} />
+      <Navbar topOffset={topOffset} />
+
+      <main style={{ paddingTop: topOffset }}>
+        <HeroSection        topOffset={topOffset} />
+        <AboutSection />
+        <ResultsSection />
+        <HowItWorksSection />
+        <ServicesSection />
+        <TrainersSection />
+        <PlansSection />
+        <GuaranteeBannerSection />
+        <FAQSection />
+        <ContactSection />
+      </main>
+
+      <Footer />
     </>
   )
 }
