@@ -1,46 +1,75 @@
 import React from 'react';
 
-const GuaranteeBannerSection: React.FC = () => (
-  <section className="relative bg-gold py-20 md:py-24 overflow-hidden">
-    <div className="absolute -top-32 -right-16 w-[460px] h-[460px] rounded-full bg-black/[0.07] pointer-events-none" />
-    <div className="relative max-w-[1200px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+const GuaranteeBannerSection: React.FC = () => {
+  const perks = ['7-day free trial', '30-day guarantee', 'No lock-in'];
 
-      {/* Left */}
-      <div>
-        <span className="block font-condensed text-[0.88rem] font-extrabold tracking-[0.22em] uppercase text-black/55 mb-5">
-          Our Promise
-        </span>
-        <h2 className="font-display leading-[1.05] tracking-[0.02em] text-gym-black"
-          style={{ fontSize: 'clamp(2.2rem, 4vw, 3.4rem)' }}>
-          Not For You After 30 Days?
-          <br />
-          <span className="text-white">We'll Refund Every Dollar.</span>
-        </h2>
-      </div>
+  const scrollToContact = () => {
+    document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' });
+  };
 
-      {/* Right */}
-      <div>
-        <p className="font-body text-[1.05rem] font-normal text-black/70 leading-[1.8] mb-7">
-          We're so confident you'll love training with us that we back every new membership
-          with a full 30-day money-back guarantee. No questions asked.
-        </p>
-        <div className="flex flex-wrap gap-3 mb-8">
-          {['7-day free trial', '30-day guarantee', 'No lock-in'].map((pill) => (
-            <span key={pill}
-              className="font-condensed text-[0.85rem] font-extrabold tracking-[0.1em] uppercase bg-black/12 text-gym-black px-4 py-1.5 rounded-sm">
-              ✓ {pill}
+  return (
+    <section className="relative overflow-hidden bg-gold py-20 md:py-24">
+      {/* Background accents */}
+      <div className="pointer-events-none absolute -top-24 -right-20 h-[360px] w-[360px] rounded-full bg-black/[0.06]" />
+      <div className="pointer-events-none absolute -bottom-24 -left-16 h-[220px] w-[220px] rounded-full bg-white/10" />
+
+      <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+          {/* Left content */}
+          <div className="max-w-2xl">
+            <span className="mb-5 block font-condensed text-sm font-extrabold uppercase tracking-[0.24em] text-black/55">
+              Our Promise
             </span>
-          ))}
+
+            <h2
+              className="font-display text-gym-black leading-[1.05] tracking-tight"
+              style={{ fontSize: 'clamp(2.25rem, 4vw, 3.75rem)' }}
+            >
+              Not For You After 30 Days?
+              <br />
+              <span className="text-white">We’ll Refund Every Dollar.</span>
+            </h2>
+          </div>
+
+          {/* Right content */}
+          <div className="lg:pl-6">
+            <div className="rounded-2xl border border-black/10 bg-white/20 p-6 backdrop-blur-sm shadow-[0_10px_30px_rgba(0,0,0,0.08)] md:p-8">
+              <p className="mb-6 max-w-xl font-body text-base leading-8 text-black/75 md:text-lg">
+                We’re so confident you’ll love training with us that every new membership is
+                backed by a full 30-day money-back guarantee. No pressure, no risk, and no
+                questions asked.
+              </p>
+
+              <div className="mb-8 flex flex-wrap gap-3">
+                {perks.map((pill) => (
+                  <span
+                    key={pill}
+                    className="inline-flex items-center rounded-full border border-black/10 bg-black/10 px-4 py-2 font-condensed text-[0.82rem] font-extrabold uppercase tracking-[0.12em] text-gym-black"
+                  >
+                    <span className="mr-2 text-sm">✓</span>
+                    {pill}
+                  </span>
+                ))}
+              </div>
+
+              <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center">
+                <button
+                  onClick={scrollToContact}
+                  className="inline-flex items-center justify-center rounded-md border-2 border-gym-black bg-gym-black px-8 py-3.5 font-condensed text-sm font-extrabold uppercase tracking-[0.14em] text-gold transition duration-200 hover:-translate-y-0.5 hover:bg-transparent hover:text-gym-black"
+                >
+                  Claim Your Free Week
+                </button>
+
+                <p className="font-body text-sm leading-6 text-black/60">
+                  Start today with zero risk.
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
-        <button
-          className="font-condensed font-extrabold tracking-[0.12em] uppercase text-[1rem] text-gym-black border-2 border-gym-black px-10 py-3.5 transition-all duration-200 hover:bg-gym-black hover:text-gold cursor-pointer bg-transparent"
-          onClick={() => document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' })}
-        >
-          Claim Your Free Week
-        </button>
       </div>
-    </div>
-  </section>
-);
+    </section>
+  );
+};
 
 export default GuaranteeBannerSection;
