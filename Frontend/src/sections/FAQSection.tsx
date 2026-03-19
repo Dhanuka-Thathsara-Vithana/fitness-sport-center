@@ -14,7 +14,7 @@ const FAQS = [
 ];
 
 const FAQItem: React.FC<FAQItemProps> = ({ q, a, isOpen, onToggle }) => {
-  const bodyRef = useRef(null);
+  const bodyRef = useRef<HTMLDivElement>(null);
   return (
     <div className={`border-b transition-colors duration-200 ${isOpen ? 'border-gold/35' : 'border-white/8'}`}>
       <button
