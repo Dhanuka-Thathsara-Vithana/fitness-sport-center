@@ -5,7 +5,7 @@ import type { LinkColProps, SocialItem } from '../../types'
 const EXPLORE: string[] = ['Home', 'About Us', 'Services', 'Trainers', 'Membership Plans']
 const SUPPORT: string[]  = ['FAQs', 'Contact Us', 'Cancellation Policy', 'Privacy Policy', 'Terms of Use']
 
-// ── Proper SVG icons ──────────────────────────────────────────────────────────
+// ── Proper SVG icons ----------------------------
 const InstagramIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="17" height="17">
     <path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.334 3.608 1.308.975.975 1.246 2.242 1.308 3.608.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.062 1.366-.334 2.633-1.308 3.608-.975.975-2.242 1.246-3.608 1.308-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.334-3.608-1.308-.975-.975-1.246-2.242-1.308-3.608C2.175 15.584 2.163 15.204 2.163 12s.012-3.584.07-4.85c.062-1.366.334-2.633 1.308-3.608.975-.975 2.242-1.246 3.608-1.308 1.266-.058 1.646-.07 4.85-.07zm0-2.163c-3.259 0-3.667.014-4.947.072-1.635.075-3.086.5-4.243 1.657C1.653 2.887 1.228 4.338 1.153 5.973 1.095 7.253 1.081 7.661 1.081 12c0 4.339.014 4.747.072 6.027.075 1.635.5 3.086 1.657 4.243 1.157 1.157 2.608 1.582 4.243 1.657C8.333 23.986 8.741 24 12 24s3.667-.014 4.947-.072c1.635-.075 3.086-.5 4.243-1.657 1.157-1.157 1.582-2.608 1.657-4.243.058-1.28.072-1.688.072-6.028 0-4.339-.014-4.747-.072-6.027-.075-1.635-.5-3.086-1.657-4.243C19.033.572 17.582.147 15.947.072 14.667.014 14.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/>
@@ -30,7 +30,6 @@ const XIcon = () => (
   </svg>
 )
 
-// Map label → icon component
 const SOCIAL_ICONS: Record<string, React.FC> = {
   Instagram: InstagramIcon,
   Facebook:  FacebookIcon,
@@ -45,7 +44,6 @@ const SOCIALS: SocialItem[] = [
   { label: 'X',         char: '' },
 ]
 
-// ── LinkCol ───────────────────────────────────────────────────────────────────
 const LinkCol: React.FC<LinkColProps> = ({ title, links }) => (
   <div>
     <h4 className="font-condensed text-[0.82rem] font-extrabold tracking-[0.2em] uppercase text-gold mb-5">{title}</h4>
@@ -64,7 +62,7 @@ const LinkCol: React.FC<LinkColProps> = ({ title, links }) => (
   </div>
 )
 
-// ── Footer ────────────────────────────────────────────────────────────────────
+// ── Footer ----------------
 const Footer: React.FC = () => (
   <footer className="bg-gym-black border-t border-gold/15">
     <div className="max-w-[1200px] mx-auto px-6 py-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[2fr_1fr_1fr_2fr] gap-10">

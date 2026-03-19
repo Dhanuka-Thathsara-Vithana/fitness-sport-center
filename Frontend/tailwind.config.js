@@ -13,9 +13,9 @@ export default {
         'off-white': '#F2EFE6',
       },
       fontFamily: {
-        display:   ['"Bebas Neue"', 'sans-serif'],
-        condensed: ['"Barlow Condensed"', 'sans-serif'],
-        body:      ['Barlow', 'sans-serif'],
+        display:   ['-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', '"Helvetica Neue"', 'sans-serif'],
+        condensed: ['-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', '"Helvetica Neue"', 'sans-serif'],
+        body:      ['-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', '"Helvetica Neue"', 'Oxygen', 'Ubuntu', 'Cantarell', 'sans-serif'],
       },
       keyframes: {
         fadeInUp: {
