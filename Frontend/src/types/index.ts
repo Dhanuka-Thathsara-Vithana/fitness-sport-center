@@ -154,7 +154,7 @@ export interface FormValues {
 
 export type FormErrors = Partial<FormValues>
 export type FormTouched = Partial<Record<keyof FormValues, boolean>>
-export type FormStatus = 'idle' | 'loading' | 'success'
+export type FormStatus = 'idle' | 'loading' | 'success' | 'error'
 
 // ── Contact Info ──────────────────────────────────────────────
 export interface ContactInfoItem {

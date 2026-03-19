@@ -1,12 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import SectionTitle from '../components/ui/SectionTitle';
 import Button from '../components/ui/Button';
 import InputField from '../components/ui/InputField';
 import FormFeedback from '../components/FormFeedback';
-import { validateForm, INITIAL_FORM, INQUIRY_OPTIONS } from '../utils/validation';
+import { INQUIRY_OPTIONS } from '../utils/validation';
+import { useContactForm } from '../hooks/useContactForm';
 import useIntersection from '../hooks/useIntersection';
-import type { FormValues, FormErrors, FormTouched, FormStatus } from '../types';
-import emailjs from '@emailjs/browser';
 
 const INFO = [
   { icon: '📍', label: 'Location', value: '88 Iron Ave, Fitness District\nColombo 03, Western Province' },
@@ -16,73 +15,9 @@ const INFO = [
 ];
 
 const ContactSection: React.FC = () => {
-  const [form, setForm]       = useState<FormValues>(INITIAL_FORM);
-  const [errors, setErrors]   = useState<FormErrors>({});
-  const [touched, setTouched] = useState<FormTouched>({});
-  const [status, setStatus]   = useState<FormStatus>('idle');
-  const [ref, visible]        = useIntersection();
-
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
-  ): void => {
-    const { name, value } = e.target;
-    const fieldName = name as keyof FormValues;
-    setForm((prev) => ({ ...prev, [fieldName]: value }));
-    if (touched[fieldName]) {
-      const errs: FormErrors = validateForm({ ...form, [fieldName]: value });
-      setErrors((prev) => ({ ...prev, [fieldName]: errs[fieldName] }));
-    }
-  };
-
-  const handleBlur = (
-    e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
-  ): void => {
-    const { name } = e.target;
-    const fieldName = name as keyof FormValues;
-    setTouched((prev) => ({ ...prev, [fieldName]: true }));
-    const errs: FormErrors = validateForm(form);
-    setErrors((prev) => ({ ...prev, [fieldName]: errs[fieldName] }));
-  };
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
-  e.preventDefault();
-  const allTouched = Object.fromEntries(
-    Object.keys(INITIAL_FORM).map((k) => [k, true])
-  ) as FormTouched;
-  setTouched(allTouched);
-  const errs: FormErrors = validateForm(form);
-  setErrors(errs);
-  if (Object.keys(errs).length) return;
-
-  setStatus('loading');
-
-  try {
-    await emailjs.send(
-      import.meta.env.VITE_EMAILJS_SERVICE_ID,
-      import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
-      {
-        to_name:  form.name,
-        to_email: form.email,
-        subject:  form.subject,
-        message:  form.message,
-        phone:    form.phone || 'Not provided',
-      },
-      import.meta.env.VITE_EMAILJS_PUBLIC_KEY
-    );
-    setStatus('success');
-  } catch (err) {
-    console.error('EmailJS error:', err);
-    setStatus('idle');
-    
-  }
-};
-
-  const handleReset = (): void => {
-    setForm(INITIAL_FORM);
-    setErrors({});
-    setTouched({});
-    setStatus('idle');
-  };
+  const { form, errors, touched, status, handleChange, handleBlur, handleSubmit, handleReset } =
+    useContactForm();
+  const [ref, visible] = useIntersection();
 
   return (
     <section
@@ -90,7 +25,6 @@ const ContactSection: React.FC = () => {
       className="relative bg-dark-brown/15 py-16 md:py-24 lg:py-32 before:absolute before:top-0 before:left-0 before:right-0 before:h-px before:bg-gradient-to-r before:from-transparent before:via-gold/22 before:to-transparent"
       ref={ref}
     >
-      {/* Tighter horizontal padding on mobile */}
       <div className="max-w-[1200px] mx-auto px-4 sm:px-6">
         <SectionTitle
           eyebrow="Get In Touch"
@@ -99,7 +33,6 @@ const ContactSection: React.FC = () => {
           align="center"
         />
 
-        {/* Gap and top margin scale up from mobile → desktop */}
         <div className={`grid grid-cols-1 lg:grid-cols-[380px_1fr] gap-4 sm:gap-6 lg:gap-8 mt-6 sm:mt-8 reveal ${visible ? 'is-visible' : ''}`}>
 
           <aside className="bg-dark-brown border-t-[3px] border-gold p-5 sm:p-7 lg:p-9">
@@ -110,19 +43,14 @@ const ContactSection: React.FC = () => {
               Come in for a free tour and see why hundreds of members call Fitness Sports
               Center their second home.
             </p>
-
-            {/* Info items — tighter gap on mobile */}
             <div className="flex flex-col gap-4 sm:gap-6">
               {INFO.map(({ icon, label, value }) => (
                 <div key={label} className="flex gap-3 sm:gap-3.5 items-start">
-                  <span className="text-gold text-[1rem] sm:text-[1.1rem] mt-0.5 flex-shrink-0">
-                    {icon}
-                  </span>
+                  <span className="text-gold text-[1rem] sm:text-[1.1rem] mt-0.5 flex-shrink-0">{icon}</span>
                   <div>
                     <span className="block font-condensed text-[0.72rem] sm:text-[0.75rem] font-extrabold tracking-[0.16em] uppercase text-gold/70 mb-0.5 sm:mb-1">
                       {label}
                     </span>
-                    {/* break-words prevents long email addresses overflowing on narrow screens */}
                     <span className="block font-body text-[0.88rem] sm:text-[0.95rem] font-normal text-off-white/78 leading-[1.65] whitespace-pre-line break-words">
                       {value}
                     </span>
@@ -132,12 +60,22 @@ const ContactSection: React.FC = () => {
             </div>
           </aside>
 
-          {/* ── Contact form ── */}
           <div className="bg-dark-brown p-5 sm:p-7 lg:p-9">
             {status === 'success' ? (
               <FormFeedback onReset={handleReset} />
             ) : (
               <form onSubmit={handleSubmit} noValidate className="flex flex-col gap-4 sm:gap-6">
+
+                {status === 'error' && (
+                  <div className="border border-red-500/40 bg-red-500/10 px-4 py-3">
+                    <p className="font-body text-[0.88rem] text-red-400 leading-[1.6]">
+                      Something went wrong. Please try again or email us directly at{' '}
+                      <a href="mailto:hello@fitnesssportscenter.lk" className="underline underline-offset-2">
+                        hello@fitnesssportscenter.lk
+                      </a>
+                    </p>
+                  </div>
+                )}
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                   <InputField
@@ -189,6 +127,7 @@ const ContactSection: React.FC = () => {
                 >
                   {status === 'loading' ? 'Sending…' : 'Send Message'}
                 </Button>
+
               </form>
             )}
           </div>
