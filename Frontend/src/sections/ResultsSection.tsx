@@ -27,7 +27,7 @@ const TESTIMONIALS = [
     color:    'bg-stone-200 text-stone-700',
   },
   {
-    quote:    'The trainers actually remember your goals. It is not a factory — it feels personal every single session.',
+    quote:    'The trainers actually remember your goals. It is not a factory, it feels personal every single session.',
     name:     'Natasha R.',
     result:   '8% body fat reduction',
     initials: 'NR',

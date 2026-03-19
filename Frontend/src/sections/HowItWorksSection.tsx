@@ -4,9 +4,9 @@ import Button from '../components/ui/Button';
 import useIntersection from '../hooks/useIntersection';
 
 const STEPS = [
-  { num: '01', title: 'Book Your Session',       desc: "Choose from 30+ weekly classes on our app or website. First-timers get a free orientation — show up 15 minutes early and we'll get you set up.", icon: '📅' },
-  { num: '02', title: 'Train With Elite Coaches', desc: "Every 60-minute session cycles through strength, cardio, and functional training zones — guided by a certified coach who adapts the workout to your level.", icon: '🏋️' },
-  { num: '03', title: 'Track Your Progress',      desc: "After every session you'll receive a detailed breakdown of calories burned, heart-rate zones, and performance metrics — see exactly how you're improving.", icon: '📊' },
+  { num: '01', title: 'Book Your Session',       desc: "Choose from 30+ weekly classes on our app or website. First-timers get a free orientation, show up 15 minutes early and we'll get you set up.", icon: '📅' },
+  { num: '02', title: 'Train With Elite Coaches', desc: "Every 60-minute session cycles through strength, cardio, and functional training zones, guided by a certified coach who adapts the workout to your level.", icon: '🏋️' },
+  { num: '03', title: 'Track Your Progress',      desc: "After every session you'll receive a detailed breakdown of calories burned, heart-rate zones, and performance metrics, see exactly how you're improving.", icon: '📊' },
 ];
 
 const HowItWorksSection: React.FC = () => {

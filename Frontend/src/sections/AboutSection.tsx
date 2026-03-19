@@ -10,12 +10,12 @@ const CHECKPOINTS = [
   'Dedicated zones for HIIT, powerlifting & functional training',
   'Nutritional guidance and meal planning support',
   'Recovery suite with sauna and cold plunge',
-  'Flexible membership plans — no lock-in contracts',
+  'Flexible membership plans, no lock-in contracts',
 ];
 
 const VALUES = [
   { icon: <Zap size={18} />,    title: 'No-Excuses Culture',   desc: 'We build accountability where every member pushes beyond their limits.' },
-  { icon: <Target size={18} />, title: 'Goal-Driven Training', desc: 'Every program is tailored to your specific goal — fat loss, muscle gain, or performance.' },
+  { icon: <Target size={18} />, title: 'Goal-Driven Training', desc: 'Every program is tailored to your specific goal, fat loss, muscle gain, or performance.' },
   { icon: <Heart size={18} />,  title: 'Community First',      desc: "We're more than a gym. Members who train together grow stronger together." },
 ];
 
@@ -31,7 +31,7 @@ const AboutSection: React.FC = () => {
           <SectionTitle
             eyebrow="Who We Are"
             title="Built For Champions."
-            subtitle="Founded in 2023, Fitness Sports Center was born from a simple belief: everyone deserves access to elite-level training. Premium equipment, science-backed programming, and passionate coaches — all under one roof."
+            subtitle="Founded in 2023, Fitness Sports Center was born from a simple belief: everyone deserves access to elite-level training. Premium equipment, science-backed programming, and passionate coaches, all under one roof."
             light
           />
           <div className="flex flex-col gap-3.5 mb-10">

@@ -22,7 +22,7 @@ const AnnouncementBar: React.FC<AnnouncementBarProps> = ({ onDismiss }) => {
         <span className="bg-gym-black text-gold text-[0.7rem] font-extrabold tracking-[0.18em] uppercase px-2.5 py-0.5 clip-btn-sm">
           LIMITED OFFER
         </span>
-        Your first week is completely free — no credit card required.
+        Your first week is completely free, no credit card required.
         <a
           href="#contact"
           onClick={scrollToContact}

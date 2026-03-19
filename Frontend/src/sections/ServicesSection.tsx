@@ -5,12 +5,12 @@ import useIntersection from '../hooks/useIntersection';
 import { Dumbbell, Flame, Brain, Apple, Waves, Bike } from 'lucide-react';
 
 const SERVICES = [
-  { icon: <Dumbbell size={28} />, title: 'Strength Training',   desc: 'Olympic barbells, power racks, dumbbells up to 150 lbs — everything to build a powerful physique.', tags: ['Free Weights', 'Powerlifting', 'Olympic Lifts'] },
+  { icon: <Dumbbell size={28} />, title: 'Strength Training',   desc: 'Olympic barbells, power racks, dumbbells up to 150 lbs, everything to build a powerful physique.', tags: ['Free Weights', 'Powerlifting', 'Olympic Lifts'] },
   { icon: <Flame size={28} />,    title: 'HIIT & Cardio',        desc: 'Torch fat and build stamina with structured HIIT classes and 40+ cardio machines including assault bikes and ski ergs.', tags: ['Group HIIT', '40+ Machines', 'HR Tracking'] },
   { icon: <Brain size={28} />,    title: 'Personal Coaching',    desc: '1-on-1 coaching with a certified trainer building a periodised plan around your body composition goals.', tags: ['NASM Certified', 'Custom Plans', 'Check-ins'] },
-  { icon: <Apple size={28} />,    title: 'Nutrition Guidance',   desc: 'Science-backed meal strategies, macro tracking, and supplement guidance — no gimmicks, just results.', tags: ['Macro Calc', 'Meal Prep', 'Body Scan'] },
+  { icon: <Apple size={28} />,    title: 'Nutrition Guidance',   desc: 'Science-backed meal strategies, macro tracking, and supplement guidance, no gimmicks, just results.', tags: ['Macro Calc', 'Meal Prep', 'Body Scan'] },
   { icon: <Waves size={28} />,    title: 'Recovery Suite',       desc: 'Infrared sauna, cold plunge (4°C), contrast therapy, and a full mobility zone to maximise recovery.', tags: ['Sauna', 'Cold Plunge', 'Mobility'] },
-  { icon: <Bike size={28} />,     title: 'Group Classes',        desc: '30+ instructor-led classes per week — spin, boxing, yoga, boot camp, and more with community energy.', tags: ['Spin', 'Boxing', 'Yoga'] },
+  { icon: <Bike size={28} />,     title: 'Group Classes',        desc: '30+ instructor-led classes per week, spin, boxing, yoga, boot camp, and more with community energy.', tags: ['Spin', 'Boxing', 'Yoga'] },
 ];
 
 const ServiceCard: React.FC<ServiceItem> = ({ icon, title, desc, tags }) => {

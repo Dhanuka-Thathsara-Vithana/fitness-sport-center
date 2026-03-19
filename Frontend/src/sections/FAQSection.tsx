@@ -49,7 +49,7 @@ const FAQSection: React.FC = () => {
         <div className={`grid grid-cols-1 lg:grid-cols-[400px_1fr] gap-16 lg:gap-20 items-start reveal ${visible ? 'is-visible' : ''}`}>
           <div>
             <SectionTitle eyebrow="FAQ" title="Got Questions?"
-              subtitle="Everything you need to know before your first visit. Still have questions? Just reach out — we respond within a few hours." />
+              subtitle="Everything you need to know before your first visit. Still have questions? Just reach out, we respond within a few hours." />
             <a href="#contact"
               onClick={(e) => { e.preventDefault(); document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' }); }}
               className="font-condensed text-[1rem] font-bold tracking-[0.1em] uppercase text-gold no-underline transition-[letter-spacing] duration-200 hover:tracking-[0.15em]">
