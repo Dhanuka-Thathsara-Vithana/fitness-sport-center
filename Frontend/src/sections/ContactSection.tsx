@@ -6,6 +6,7 @@ import FormFeedback from '../components/FormFeedback';
 import { validateForm, INITIAL_FORM, INQUIRY_OPTIONS } from '../utils/validation';
 import useIntersection from '../hooks/useIntersection';
 import type { FormValues, FormErrors, FormTouched, FormStatus } from '../types';
+import emailjs from '@emailjs/browser';
 
 const INFO = [
   { icon: '📍', label: 'Location', value: '88 Iron Ave, Fitness District\nColombo 03, Western Province' },
@@ -44,18 +45,37 @@ const ContactSection: React.FC = () => {
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
-    e.preventDefault();
-    const allTouched = Object.fromEntries(
-      Object.keys(INITIAL_FORM).map((k) => [k, true])
-    ) as FormTouched;
-    setTouched(allTouched);
-    const errs: FormErrors = validateForm(form);
-    setErrors(errs);
-    if (Object.keys(errs).length) return;
-    setStatus('loading');
-    await new Promise<void>((r) => setTimeout(r, 1600));
+  e.preventDefault();
+  const allTouched = Object.fromEntries(
+    Object.keys(INITIAL_FORM).map((k) => [k, true])
+  ) as FormTouched;
+  setTouched(allTouched);
+  const errs: FormErrors = validateForm(form);
+  setErrors(errs);
+  if (Object.keys(errs).length) return;
+
+  setStatus('loading');
+
+  try {
+    await emailjs.send(
+      import.meta.env.VITE_EMAILJS_SERVICE_ID,
+      import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+      {
+        to_name:  form.name,
+        to_email: form.email,
+        subject:  form.subject,
+        message:  form.message,
+        phone:    form.phone || 'Not provided',
+      },
+      import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+    );
     setStatus('success');
-  };
+  } catch (err) {
+    console.error('EmailJS error:', err);
+    setStatus('idle');
+    
+  }
+};
 
   const handleReset = (): void => {
     setForm(INITIAL_FORM);
